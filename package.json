@@ -4,7 +4,9 @@
   "author": "Ameer Jhan",
   "license": "MIT",
   "scripts": {
-    "dev": "vite --config ./frontend/vite.config.js"
+    "dev": "concurrently -k yarn:dev:frontend yarn:dev:backend",
+    "dev:frontend": "vite --config ./frontend/vite.config.js",
+    "dev:backend": "node -r ts-node/register --no-warnings --watch ./magic/server.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

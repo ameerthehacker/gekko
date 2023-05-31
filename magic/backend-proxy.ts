@@ -11,7 +11,7 @@ const backendProxy = new Proxy({}, {
     // fs => proxy
     // readFile => property
 
-    return (...params) => {
+    return async (...params) => {
       console.log(`accessing property ${property} from proxy with params ${params}`);
     };
   }
