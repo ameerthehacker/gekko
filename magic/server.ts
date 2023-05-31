@@ -8,7 +8,13 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/', async (req, res) => {
-
+  const { functionName, functionParams } = req.body;
+  // execute the actual function in the server
+  const result = await require('../frontend/fs.server').default[functionName](...functionParams);
+  // send the result over the wire
+  res.json({
+    result
+  });
 });
 
 app.listen(PORT, () => {

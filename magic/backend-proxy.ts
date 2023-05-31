@@ -13,6 +13,22 @@ const backendProxy = new Proxy({}, {
 
     return async (...params) => {
       console.log(`accessing property ${property} from proxy with params ${params}`);
+
+      const response = await fetch(
+        'http://localhost:8000',
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          body: JSON.stringify({
+            functionName: property,
+            functionParams: params
+          })
+        }
+      )
+
+      return (await response.json()).result;
     };
   }
 });
