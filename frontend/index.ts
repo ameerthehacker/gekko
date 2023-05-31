@@ -1,5 +1,3 @@
-fetch('http://localhost:8000/fs/readFile')
-.then(res => res.json())
-.then(res => {
-  document.getElementById('file-content').innerText = res.fileContent;
-});
+import * as fs from './fs.server';
+
+fs.readFile('./sample.txt');
